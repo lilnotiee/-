@@ -23,6 +23,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 margin:0;
 padding:0;
 box-sizing:border-box;
+
 font-family:'Onest',sans-serif;
 
 cursor:url("https://r2.guns.lol/7db0ae3b-d0ae-4956-b99d-2abf9045267a.png") 16 16, auto !important;
@@ -62,12 +63,11 @@ object-fit:cover;
 z-index:-5;
 
 filter:
-brightness(0.28)
-blur(5px)
+brightness(0.38)
 contrast(1.15)
-saturate(1.25);
+saturate(1.2);
 
-transform:scale(1.08);
+transform:scale(1.05);
 
 }
 
@@ -80,7 +80,7 @@ position:absolute;
 inset:0;
 
 background:
-rgba(0,0,0,0.18);
+rgba(0,0,0,0.10);
 
 z-index:-4;
 
@@ -129,8 +129,6 @@ align-items:center;
 
 }
 
-/* AVATAR */
-
 .avatar{
 
 width:92px;
@@ -143,14 +141,8 @@ object-fit:cover;
 border:
 1px solid rgba(255,255,255,0.08);
 
-background:
-rgba(255,255,255,0.02);
-
-backdrop-filter:
-blur(14px);
-
 box-shadow:
-0 0 25px rgba(255,255,255,0.08);
+0 0 18px rgba(255,255,255,0.08);
 
 animation:
 float 4s ease infinite,
@@ -158,7 +150,7 @@ glow 3s ease infinite;
 
 }
 
-/* DECORATION */
+/* AVATAR DECORATION */
 
 .avatar-decoration{
 
@@ -173,7 +165,7 @@ float 4s ease infinite;
 
 }
 
-/* NAME */
+/* USERNAME */
 
 h1{
 
@@ -186,7 +178,7 @@ font-weight:700;
 letter-spacing:0.5px;
 
 text-shadow:
-0 0 18px rgba(255,255,255,0.18);
+0 0 16px rgba(255,255,255,0.16);
 
 }
 
@@ -198,7 +190,7 @@ margin-top:4px;
 
 font-size:15px;
 
-opacity:0.75;
+opacity:0.78;
 
 font-weight:500;
 
@@ -212,7 +204,7 @@ margin-top:7px;
 
 font-size:13px;
 
-opacity:0.55;
+opacity:0.58;
 
 display:flex;
 align-items:center;
@@ -234,19 +226,13 @@ padding:15px;
 border-radius:28px;
 
 background:
-rgba(255,255,255,0.025);
-
-backdrop-filter:
-blur(24px);
-
--webkit-backdrop-filter:
-blur(24px);
+rgba(255,255,255,0.015);
 
 border:
-1px solid rgba(255,255,255,0.045);
+1px solid rgba(255,255,255,0.04);
 
 box-shadow:
-0 0 35px rgba(0,0,0,0.14);
+0 0 20px rgba(0,0,0,0.08);
 
 }
 
@@ -261,7 +247,7 @@ gap:13px;
 
 }
 
-/* AVATAR */
+/* DISCORD AVATAR */
 
 .discord-avatar-wrap{
 
@@ -292,12 +278,12 @@ right:2px;
 width:14px;
 height:14px;
 
-background:#43b581;
-
 border-radius:50%;
 
 border:
 2px solid #080808;
+
+transition:0.3s ease;
 
 }
 
@@ -327,7 +313,7 @@ flex-wrap:wrap;
 
 }
 
-/* USERNAME */
+/* USER */
 
 #discordName{
 
@@ -343,7 +329,7 @@ font-weight:700;
 
 font-size:13px;
 
-opacity:0.62;
+opacity:0.65;
 
 }
 
@@ -353,39 +339,53 @@ opacity:0.62;
 
 display:flex;
 align-items:center;
+justify-content:center;
 
-gap:6px;
+height:26px;
 
 padding:
-4px 10px;
+0 10px;
 
 border-radius:999px;
 
 background:
-rgba(255,255,255,0.04);
-
-backdrop-filter:
-blur(12px);
+rgba(255,255,255,0.025);
 
 border:
-1px solid rgba(255,255,255,0.04);
+1px solid rgba(255,255,255,0.03);
 
-font-size:12px;
+overflow:hidden;
 
-font-weight:600;
+text-decoration:none;
+
+transition:0.25s ease;
 
 }
 
-/* HEART */
+.guild-pill:hover{
+
+transform:
+translateY(-2px)
+scale(1.03);
+
+background:
+rgba(255,255,255,0.05);
+
+}
+
+/* PNG */
 
 .guild-heart{
 
-width:14px;
-height:14px;
+height:20px;
+
+width:auto;
+
+object-fit:contain;
 
 filter:
 drop-shadow(
-0 0 6px rgba(255,192,203,0.45)
+0 0 6px rgba(255,255,255,0.14)
 );
 
 }
@@ -484,13 +484,11 @@ margin-top:14px;
 border-radius:999px;
 
 background:
-rgba(255,255,255,0.04);
+rgba(255,255,255,0.03);
 
 overflow:hidden;
 
 }
-
-/* BAR */
 
 .progress-bar{
 
@@ -499,14 +497,11 @@ width:0%;
 height:100%;
 
 background:
-rgba(255,255,255,0.82);
+rgba(255,255,255,0.75);
 
 border-radius:999px;
 
 transition:0.1s linear;
-
-box-shadow:
-0 0 10px rgba(255,255,255,0.18);
 
 }
 
@@ -524,8 +519,6 @@ margin-top:16px;
 
 }
 
-/* BUTTON */
-
 .music-buttons button{
 
 width:48px;
@@ -536,13 +529,7 @@ border:none;
 border-radius:16px;
 
 background:
-rgba(255,255,255,0.03);
-
-backdrop-filter:
-blur(20px);
-
--webkit-backdrop-filter:
-blur(20px);
+rgba(255,255,255,0.02);
 
 border:
 1px solid rgba(255,255,255,0.04);
@@ -557,15 +544,13 @@ transition:0.25s ease;
 
 }
 
-/* HOVER */
-
 .music-buttons button:hover{
 
 transform:
 translateY(-2px);
 
 background:
-rgba(255,255,255,0.06);
+rgba(255,255,255,0.05);
 
 }
 
@@ -581,13 +566,10 @@ padding:
 border-radius:22px;
 
 background:
-rgba(255,255,255,0.02);
-
-backdrop-filter:
-blur(18px);
+rgba(255,255,255,0.015);
 
 border:
-1px solid rgba(255,255,255,0.04);
+1px solid rgba(255,255,255,0.03);
 
 display:flex;
 justify-content:center;
@@ -596,8 +578,6 @@ align-items:center;
 gap:22px;
 
 }
-
-/* SOCIAL */
 
 .social{
 
@@ -613,8 +593,6 @@ text-decoration:none;
 
 }
 
-/* HOVER */
-
 .social:hover{
 
 opacity:1;
@@ -625,7 +603,7 @@ scale(1.05);
 
 }
 
-/* ANIMATION */
+/* ANIMATIONS */
 
 @keyframes fade{
 
@@ -728,7 +706,7 @@ class="avatar-decoration"
 
 </div>
 
-<!-- NAME -->
+<!-- USERNAME -->
 
 <h1 id="mainUsername">
 
@@ -781,16 +759,17 @@ Loading...
 
 </h3>
 
-<div class="guild-pill">
+<a
+href="https://discord.gg/UW7VcVCvn9"
+target="_blank"
+class="guild-pill">
 
 <img
-src="heart.png"
+src="ɓαɓყ.png"
 class="guild-heart"
 />
 
-ɓαɓყ
-
-</div>
+</a>
 
 <div
 class="badges"
@@ -802,7 +781,7 @@ id="discordBadges">
 
 <p id="discordStatus">
 
-Loading status...
+Loading...
 
 </p>
 
@@ -883,7 +862,7 @@ onclick="togglePlay()">
 
 <div class="bottom-socials">
 
-<a href="#" class="social">
+<a href="https://discord.gg/UW7VcVCvn9" class="social">
 <i class="fa-brands fa-discord"></i>
 </a>
 
@@ -979,20 +958,86 @@ discord.discord_user.username;
 
 /* STATUS */
 
-let status =
-discord.discord_status;
+let finalStatus = "";
 
 if(discord.listening_to_spotify){
 
-status =
-`Listening to ${discord.spotify.song}`;
+finalStatus =
+`Listening to ${discord.spotify.song} • ${discord.spotify.artist}`;
+
+}else{
+
+switch(discord.discord_status){
+
+case "online":
+
+finalStatus = "Online";
+break;
+
+case "idle":
+
+finalStatus = "Idle";
+break;
+
+case "dnd":
+
+finalStatus = "Do Not Disturb";
+break;
+
+case "offline":
+
+finalStatus = "Offline";
+break;
+
+default:
+
+finalStatus = "Offline";
+
+}
 
 }
 
 document.getElementById(
 "discordStatus"
 ).innerText =
-status;
+finalStatus;
+
+/* STATUS DOT */
+
+const dot =
+document.querySelector(".online-dot");
+
+switch(discord.discord_status){
+
+case "online":
+
+dot.style.background =
+"#43b581";
+
+break;
+
+case "idle":
+
+dot.style.background =
+"#faa61a";
+
+break;
+
+case "dnd":
+
+dot.style.background =
+"#ed4245";
+
+break;
+
+case "offline":
+
+dot.style.background =
+"#747f8d";
+
+break;
+
+}
 
 /* AVATAR */
 
@@ -1009,7 +1054,7 @@ document.querySelector(
 ).src =
 avatarUrl;
 
-/* DECORATION */
+/* AVATAR DECORATION */
 
 if(
 discord.discord_user.avatar_decoration_data
@@ -1097,8 +1142,6 @@ cover:"cover3.jpg"
 
 ];
 
-/* PLAYER */
-
 let currentSong = 0;
 
 const audio =
@@ -1131,7 +1174,7 @@ document.getElementById(
 "progressBar"
 );
 
-/* LOAD */
+/* LOAD SONG */
 
 function loadSong(index){
 
@@ -1224,7 +1267,7 @@ playBtn.innerHTML =
 
 }
 
-/* AUTO */
+/* AUTO NEXT */
 
 audio.addEventListener(
 "ended",
@@ -1257,4 +1300,4 @@ loadSong(currentSong);
 </script>
 
 </body>
-  </html>
+</html>
