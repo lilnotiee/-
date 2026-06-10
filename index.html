@@ -1,150 +1,615 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Notiee | About Me</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <link rel="stylesheet" href="style.css"/>
+<title>NOTIEE — About Me</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <script src="https://kit.fontawesome.com/a2d9d5a64f.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+/* BACKGROUND */
+
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-10;
+background:
+radial-gradient(circle at top left,#ffffff12,transparent 25%),
+radial-gradient(circle at bottom right,#ffffff08,transparent 20%),
+#050505;
+}
+
+.grid{
+position:fixed;
+width:100%;
+height:100%;
+background-image:
+linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+background-size:50px 50px;
+mask-image:linear-gradient(to bottom,transparent,black);
+z-index:-9;
+}
+
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+width:90%;
+max-width:1200px;
+padding:18px 28px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.08);
+backdrop-filter:blur(18px);
+border-radius:22px;
+z-index:999;
+box-shadow:
+0 0 40px rgba(255,255,255,0.03);
+}
+
+.logo{
+font-size:22px;
+font-weight:800;
+letter-spacing:3px;
+}
+
+nav ul{
+display:flex;
+gap:28px;
+list-style:none;
+}
+
+nav ul a{
+text-decoration:none;
+color:#cfcfcf;
+font-size:14px;
+font-weight:500;
+transition:0.3s;
+}
+
+nav ul a:hover{
+color:white;
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:140px 8%;
+position:relative;
+}
+
+.hero-box{
+width:100%;
+max-width:1200px;
+display:grid;
+grid-template-columns:1fr 420px;
+gap:50px;
+align-items:center;
+}
+
+.left h3{
+font-size:14px;
+font-weight:600;
+letter-spacing:4px;
+color:#8f8f8f;
+margin-bottom:20px;
+}
+
+.left h1{
+font-size:85px;
+line-height:95px;
+font-weight:800;
+margin-bottom:25px;
+}
+
+.left h1 span{
+color:#a8a8a8;
+}
+
+.left p{
+font-size:17px;
+line-height:32px;
+color:#9c9c9c;
+max-width:700px;
+}
+
+.buttons{
+margin-top:40px;
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:16px 32px;
+border-radius:16px;
+text-decoration:none;
+font-size:15px;
+font-weight:600;
+transition:0.35s;
+}
+
+.btn-primary{
+background:white;
+color:black;
+}
+
+.btn-primary:hover{
+transform:translateY(-6px);
+box-shadow:0 15px 40px rgba(255,255,255,0.15);
+}
+
+.btn-secondary{
+border:1px solid rgba(255,255,255,0.12);
+background:rgba(255,255,255,0.04);
+color:white;
+}
+
+.btn-secondary:hover{
+background:white;
+color:black;
+}
+
+/* PROFILE */
+
+.profile-card{
+position:relative;
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+border-radius:30px;
+padding:30px;
+overflow:hidden;
+}
+
+.profile-card::before{
+content:'';
+position:absolute;
+width:250px;
+height:250px;
+background:radial-gradient(circle,#ffffff18,transparent 70%);
+top:-120px;
+right:-120px;
+}
+
+.profile-img{
+width:100%;
+height:420px;
+object-fit:cover;
+border-radius:24px;
+filter:grayscale(100%);
+}
+
+.profile-info{
+margin-top:24px;
+}
+
+.profile-info h2{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.profile-info p{
+color:#9e9e9e;
+line-height:28px;
+}
+
+/* STATS */
+
+.stats{
+padding:20px 8% 100px;
+}
+
+.stats-grid{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+}
+
+.stat{
+padding:40px;
+border-radius:24px;
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.08);
+backdrop-filter:blur(15px);
+transition:0.35s;
+}
+
+.stat:hover{
+transform:translateY(-8px);
+background:rgba(255,255,255,0.06);
+}
+
+.stat h1{
+font-size:45px;
+margin-bottom:10px;
+}
+
+.stat p{
+color:#9c9c9c;
+}
+
+/* ABOUT */
+
+.about{
+padding:120px 8%;
+}
+
+.about-box{
+max-width:1200px;
+margin:auto;
+padding:60px;
+border-radius:30px;
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+}
+
+.section-title{
+font-size:50px;
+margin-bottom:25px;
+}
+
+.about-box p{
+font-size:17px;
+line-height:34px;
+color:#a7a7a7;
+}
+
+/* SKILLS */
+
+.skills{
+padding:40px 8% 120px;
+}
+
+.skills-grid{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.skill{
+padding:40px;
+border-radius:24px;
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.08);
+transition:0.35s;
+}
+
+.skill:hover{
+transform:translateY(-10px);
+background:white;
+color:black;
+}
+
+.skill i{
+font-size:40px;
+margin-bottom:18px;
+}
+
+.skill h2{
+margin-bottom:12px;
+}
+
+/* SOCIALS */
+
+.socials{
+padding:0 8% 120px;
+}
+
+.social-box{
+max-width:1200px;
+margin:auto;
+display:flex;
+justify-content:center;
+gap:24px;
+flex-wrap:wrap;
+}
+
+.social{
+width:85px;
+height:85px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:24px;
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.08);
+font-size:28px;
+color:white;
+text-decoration:none;
+transition:0.35s;
+}
+
+.social:hover{
+background:white;
+color:black;
+transform:translateY(-8px);
+}
+
+/* FOOTER */
+
+footer{
+padding:40px;
+text-align:center;
+color:#7d7d7d;
+border-top:1px solid rgba(255,255,255,0.06);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:980px){
+
+.hero-box{
+grid-template-columns:1fr;
+}
+
+.left h1{
+font-size:55px;
+line-height:65px;
+}
+
+.profile-img{
+height:350px;
+}
+
+nav ul{
+display:none;
+}
+
+.section-title{
+font-size:38px;
+}
+
+}
+
+</style>
 </head>
 <body>
 
-<div class="bg-animation"></div>
+<div class="bg"></div>
+<div class="grid"></div>
 
-<header>
-  <nav>
-    <h1 class="logo">NOTIEE</h1>
+<nav>
 
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#socials">Socials</a></li>
-    </ul>
-  </nav>
-</header>
+<div class="logo">NOTIEE</div>
 
-<section class="hero" id="home">
+<ul>
+<li><a href="#about">ABOUT</a></li>
+<li><a href="#skills">SKILLS</a></li>
+<li><a href="#socials">SOCIALS</a></li>
+</ul>
 
-  <div class="hero-content">
+</nav>
 
-    <img src="https://i.imgur.com/W8sQw5x.png" class="profile"/>
+<section class="hero">
 
-    <h2>Hello, I'm <span>Notiee</span></h2>
+<div class="hero-box">
 
-    <p>
-      Developer • Designer • Gamer • Discord Creator
-    </p>
+<div class="left">
 
-    <div class="buttons">
-      <a href="https://discord.gg/UW7VcVCvn9" target="_blank" class="btn">
-        Join Discord
-      </a>
+<h3>DIGITAL CREATOR</h3>
 
-      <a href="#about" class="btn btn2">
-        Explore
-      </a>
-    </div>
+<h1>
+Modern <span>Developer</span><br>
+& Designer
+</h1>
 
-  </div>
+<p>
+I build premium Discord bots, futuristic websites,
+gaming systems, and immersive UI experiences with a
+minimal black and white aesthetic.
+</p>
+
+<div class="buttons">
+
+<a href="#" class="btn btn-primary">
+Discord
+</a>
+
+<a href="#about" class="btn btn-secondary">
+Explore
+</a>
+
+</div>
+
+</div>
+
+<div class="profile-card">
+
+<img
+class="profile-img"
+src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop"
+/>
+
+<div class="profile-info">
+
+<h2>NOTIEE</h2>
+
+<p>
+Premium UI Developer • Gamer • Bot Creator
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="stats">
+
+<div class="stats-grid">
+
+<div class="stat">
+<h1>20+</h1>
+<p>Projects Created</p>
+</div>
+
+<div class="stat">
+<h1>5M+</h1>
+<p>Lines Imagined</p>
+</div>
+
+<div class="stat">
+<h1>24/7</h1>
+<p>Creative Vision</p>
+</div>
+
+<div class="stat">
+<h1>∞</h1>
+<p>Ideas & Concepts</p>
+</div>
+
+</div>
 
 </section>
 
 <section class="about" id="about">
 
-  <div class="card">
-    <h2>About Me</h2>
+<div class="about-box">
 
-    <p>
-      I'm a passionate developer creating modern Discord bots,
-      stylish websites, music systems, gaming projects,
-      and premium UI experiences.
-    </p>
+<h1 class="section-title">
+About Me
+</h1>
 
-    <p>
-      I enjoy building futuristic projects with animations,
-      clean aesthetics, and powerful features.
-    </p>
-  </div>
+<p>
+I focus on building modern digital experiences with clean
+design language, cinematic visuals, smooth interactions,
+and futuristic aesthetics.
+<br><br>
+My projects include Discord automation systems,
+music bots, premium websites, gaming interfaces,
+and advanced UI concepts inspired by modern luxury
+web experiences.
+</p>
+
+</div>
 
 </section>
 
 <section class="skills" id="skills">
 
-  <h2>My Skills</h2>
+<h1 class="section-title" style="text-align:center;margin-bottom:50px;">
+Skills
+</h1>
 
-  <div class="skill-grid">
+<div class="skills-grid">
 
-    <div class="skill-card">
-      <i class="fab fa-discord"></i>
-      <h3>Discord Bots</h3>
-    </div>
+<div class="skill">
+<i class="fa-brands fa-discord"></i>
+<h2>Discord Systems</h2>
+<p>Advanced bots, automation, music & UI systems.</p>
+</div>
 
-    <div class="skill-card">
-      <i class="fas fa-code"></i>
-      <h3>Web Development</h3>
-    </div>
+<div class="skill">
+<i class="fa-solid fa-code"></i>
+<h2>Web Development</h2>
+<p>Modern responsive premium interfaces.</p>
+</div>
 
-    <div class="skill-card">
-      <i class="fas fa-music"></i>
-      <h3>Music Systems</h3>
-    </div>
+<div class="skill">
+<i class="fa-solid fa-gamepad"></i>
+<h2>Gaming Projects</h2>
+<p>Game servers, UI mods & custom systems.</p>
+</div>
 
-    <div class="skill-card">
-      <i class="fas fa-gamepad"></i>
-      <h3>Gaming Projects</h3>
-    </div>
+<div class="skill">
+<i class="fa-solid fa-palette"></i>
+<h2>Premium UI</h2>
+<p>Minimal black & white futuristic aesthetics.</p>
+</div>
 
-  </div>
-
-</section>
-
-<section class="music">
-
-  <div class="music-card">
-
-    <h2>Favorite Track</h2>
-
-    <img src="https://i.imgur.com/W8sQw5x.png"/>
-
-    <h3>Alan Walker - Faded</h3>
-
-    <audio controls>
-      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
-    </audio>
-
-  </div>
+</div>
 
 </section>
 
 <section class="socials" id="socials">
 
-  <h2>Connect With Me</h2>
+<h1 class="section-title" style="text-align:center;margin-bottom:50px;">
+Connect
+</h1>
 
-  <div class="social-icons">
+<div class="social-box">
 
-    <a href="#"><i class="fab fa-discord"></i></a>
+<a href="#" class="social">
+<i class="fa-brands fa-discord"></i>
+</a>
 
-    <a href="#"><i class="fab fa-github"></i></a>
+<a href="#" class="social">
+<i class="fa-brands fa-github"></i>
+</a>
 
-    <a href="#"><i class="fab fa-youtube"></i></a>
+<a href="#" class="social">
+<i class="fa-brands fa-youtube"></i>
+</a>
 
-    <a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#" class="social">
+<i class="fa-brands fa-instagram"></i>
+</a>
 
-  </div>
+</div>
 
 </section>
 
 <footer>
-  <p>© 2026 Notiee. All Rights Reserved.</p>
+© 2026 NOTIEE — ALL RIGHTS RESERVED
 </footer>
 
-<script src="script.js"></script>
+<script>
+
+document.addEventListener("mousemove",(e)=>{
+
+const x=e.clientX/window.innerWidth;
+const y=e.clientY/window.innerHeight;
+
+document.querySelector(".bg").style.transform=
+`translate(${x*10}px,${y*10}px)`;
+
+});
+
+</script>
 
 </body>
 </html>
