@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Notiee</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+/* RESET */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+
+font-family:'Onest',sans-serif;
+
+cursor:url("https://r2.guns.lol/7db0ae3b-d0ae-4956-b99d-2abf9045267a.png") 16 16, auto !important;
+}
+
+/* BODY */
+
+body{
+
+height:100vh;
+
+overflow:hidden;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:#080808;
+
+position:relative;
+
+color:white;
+
+}
+
+/* VIDEO */
+
+.bg{
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
+z-index:-5;
+
+filter:
+brightness(1);
+contrast(1);
+saturate(1.1);
+
+transform:scale(1);
+
+}
+
+/* OVERLAY */
+
+.overlay{
+
+position:absolute;
+
+inset:0;
+
+background:
+transparent;
+
+z-index:-4;
+
+}
+
+/* SNOW */
+
+.snow{
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+overflow:hidden;
+
+pointer-events:none;
+
+z-index:-3;
+
+}
+
+/* PROFILE */
+
+.profile{
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+text-align:center;
+
+animation:fade 0.8s ease;
+
+}
+
+/* AVATAR */
+
+.avatar-wrapper{
+
+position:relative;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+}
+
+.avatar{
+
+width:92px;
+height:92px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+border:
+1px solid rgba(255,255,255,0.08);
+
+box-shadow:
+0 0 18px rgba(255,255,255,0.08);
+
+animation:
+float 4s ease infinite,
+glow 3s ease infinite;
+
+}
+
+/* AVATAR DECORATION */
+
+.avatar-decoration{
+
+position:absolute;
+
+width:145px;
+
+pointer-events:none;
+
+animation:
+float 4s ease infinite;
+
+}
+
+/* USERNAME */
+
+h1{
+
+margin-top:12px;
+
+font-size:36px;
+
+font-weight:700;
+
+letter-spacing:0.5px;
+
+text-shadow:
+0 0 16px rgba(255,255,255,0.16);
+
+}
+
+/* BIO */
+
+.bio{
+
+margin-top:4px;
+
+font-size:15px;
+
+opacity:0.78;
+
+font-weight:500;
+
+}
+
+/* Location */
+.location{
+    margin-top:7px;
+    font-size:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    color:rgba(255,255,255,.85);
+}
+
+/* Location icon glow */
+.location i{
+    color:#ffffff;
+    filter:
+        drop-shadow(0 0 2px rgba(255,255,255,.8))
+        drop-shadow(0 0 6px rgba(255,255,255,.45));
+    animation:locationGlow 2.5s ease-in-out infinite;
+}
+/* GLASS */
+
+.glass{
+    margin-top:18px;
+    width:325px;
+    padding:15px;
+
+    border-radius:28px;
+
+    background: rgba(20,20,20,.55);
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 12px 35px rgba(0,0,0,.45);
+    transition:.3s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+.glass:hover{
+    border-color:rgba(255,255,255,.25);
+    background:rgba(255,255,255,.03);
+}
+/* DISCORD */
+
+.discord{
+
+display:flex;
+align-items:center;
+
+gap:13px;
+
+}
+
+/* DISCORD AVATAR */
+
+.discord-avatar-wrap{
+
+position:relative;
+
+}
+
+.discord-avatar-wrap img{
+
+width:66px;
+height:66px;
+
+border-radius:20px;
+
+object-fit:cover;
+
+}
+
+/* ONLINE */
+
+.online-dot{
+
+position:absolute;
+
+bottom:2px;
+right:2px;
+
+width:14px;
+height:14px;
+
+border-radius:50%;
+
+border:
+2px solid #080808;
+
+transition:0.3s ease;
+
+}
+
+/* INFO */
+
+.discord-info{
+
+display:flex;
+flex-direction:column;
+
+gap:4px;
+
+text-align:left;
+
+}
+
+/* TOP */
+
+.top-line{
+
+display:flex;
+align-items:center;
+
+gap:7px;
+
+flex-wrap:wrap;
+
+}
+
+/* USER */
+
+#discordName{
+
+font-size:18px;
+
+font-weight:700;
+
+}
+
+/* STATUS */
+
+#discordStatus{
+
+font-size:13px;
+
+opacity:0.65;
+
+}
+
+/* TAG */
+
+.guild-pill{
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+height:26px;
+
+padding:
+0 10px;
+
+border-radius:999px;
+
+background:
+rgba(255,255,255,0.025);
+
+border:
+1px solid rgba(255,255,255,0.03);
+
+overflow:hidden;
+
+text-decoration:none;
+
+transition:0.25s ease;
+
+}
+
+.guild-pill:hover{
+
+transform:
+translateY(-2px)
+scale(1.03);
+
+background:
+rgba(255,255,255,0.05);
+
+}
+
+#cursorGlow{
+position:fixed;
+width:250px;
+height:250px;
+border-radius:50%;
+background:radial-gradient(circle, rgba(255,255,255,.12), transparent 70%);
+pointer-events:none;
+transform:translate(-50%,-50%);
+filter:blur(40px);
+z-index:0;
+}
+
+/* PNG */
+
+.guild-heart{
+
+height:20px;
+
+width:auto;
+
+object-fit:contain;
+
+filter:
+drop-shadow(
+0 0 6px rgba(255,255,255,0.14)
+);
+
+}
+
+.heart-name{
+margin-left:8px;
+font-size:15px;
+font-weight:600;
+color:#ffd4e8;
+letter-spacing:.5px;
+text-shadow:0 0 10px rgba(255,180,220,.8);
+}
+
+/* BADGES */
+
+.badges{
+
+display:flex;
+align-items:center;
+
+gap:5px;
+
+}
+
+.badge{
+
+width:18px;
+height:18px;
+
+object-fit:contain;
+
+}
+
+/* MUSIC */
+
+.song{
+
+display:flex;
+align-items:center;
+
+gap:12px;
+
+}
+
+/* COVER */
+
+.song img{
+
+width:56px;
+height:56px;
+
+border-radius:16px;
+
+object-fit:cover;
+
+border:
+1px solid rgba(255,255,255,0.05);
+
+}
+
+/* SONG INFO */
+.spotify-time{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:8px;
+    font-size:12px;
+    color:rgba(255,255,255,.65);
+}
+.song-info{
+
+text-align:left;
+
+}
+
+.song-info h4{
+
+font-size:15px;
+
+font-weight:700;
+
+}
+
+.song-info p{
+
+font-size:13px;
+
+opacity:0.58;
+
+margin-top:2px;
+
+}
+
+/* AUDIO */
+
+audio{
+
+display:none;
+
+}
+
+/* PROGRESS */
+
+.progress-container{
+
+width:100%;
+
+height:3px;
+
+margin-top:14px;
+
+border-radius:999px;
+
+background:
+rgba(255,255,255,0.03);
+
+overflow:hidden;
+
+}
+
+.progress-bar{
+
+width:0%;
+
+height:100%;
+
+background:
+rgba(255,255,255,0.75);
+
+border-radius:999px;
+
+transition:0.1s linear;
+
+}
+
+/* BUTTONS */
+
+.music-buttons{
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+gap:14px;
+
+margin-top:16px;
+
+}
+
+.music-buttons button{
+
+width:48px;
+height:48px;
+
+border:none;
+
+border-radius:16px;
+
+background:
+rgba(255,255,255,0.02);
+
+border:
+1px solid rgba(255,255,255,0.04);
+
+color:white;
+
+font-size:16px;
+
+cursor:pointer;
+
+transition:0.25s ease;
+
+}
+
+.music-buttons button:hover{
+
+transform:
+translateY(-2px);
+
+background:
+rgba(255,255,255,0.05);
+
+}
+
+/* SOCIALS */
+
+.bottom-socials{
+
+margin-top:22px;
+
+padding:
+12px 20px;
+
+border-radius:22px;
+
+background:
+rgba(255,255,255,0.015);
+
+border:
+1px solid rgba(255,255,255,0.03);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+gap:22px;
+
+}
+
+.social{
+
+font-size:24px;
+
+color:white;
+
+opacity:0.72;
+
+transition:0.25s ease;
+
+text-decoration:none;
+
+}
+
+.social:hover{
+
+opacity:1;
+
+transform:
+translateY(-3px)
+scale(1.05);
+
+}
+.aurora{
+position:fixed;
+inset:0;
+z-index:-4;
+overflow:hidden;
+pointer-events:none;
+}
+
+.aurora::before,
+.aurora::after{
+
+content:"";
+
+position:absolute;
+
+width:70vw;
+height:70vw;
+
+border-radius:50%;
+
+filter:blur(130px);
+
+animation:auroraMove 16s ease-in-out infinite alternate;
+}
+
+.aurora::before{
+background:#6b5cff55;
+left:-20%;
+top:-10%;
+}
+
+.aurora::after{
+background:#00d9ff33;
+right:-15%;
+bottom:-10%;
+animation-delay:8s;
+}
+
+@keyframes auroraMove{
+
+0%{
+transform:translate(0,0) scale(1);
+}
+
+100%{
+transform:translate(200px,-120px) scale(1.3);
+}
+
+}
+/* ANIMATIONS */
+
+@keyframes locationGlow{
+    0%,100%{
+        filter:
+            drop-shadow(0 0 2px rgba(255,255,255,.6))
+            drop-shadow(0 0 5px rgba(255,255,255,.35));
+    }
+
+    50%{
+        filter:
+            drop-shadow(0 0 5px rgba(255,255,255,.9))
+            drop-shadow(0 0 10px rgba(255,255,255,.6));
+    }
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0px);
+}
+
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-3px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+@keyframes glow{
+
+0%{
+box-shadow:
+0 0 12px rgba(255,255,255,0.05);
+}
+
+50%{
+box-shadow:
+0 0 24px rgba(255,255,255,0.10);
+}
+
+100%{
+box-shadow:
+0 0 12px rgba(255,255,255,0.05);
+}
+
+}
+
+@keyframes fall{
+
+0%{
+transform:translateY(-10vh);
+}
+
+100%{
+transform:translateY(110vh);
+}
+
+}
+
+
+/* Discord status icon fix */
+#discordStatus{
+display:flex;
+align-items:center;
+gap:6px;
+}
+.status-icon{
+width:12px;
+height:12px;
+border-radius:50%;
+position:relative;
+display:inline-block;
+flex-shrink:0;
+}
+.status-icon.dnd{
+background:#ED4245;
+}
+.status-icon.dnd::after{
+content:"";
+position:absolute;
+left:2px;
+right:2px;
+top:50%;
+height:2px;
+background:#fff;
+transform:translateY(-50%);
+border-radius:2px;
+}
+.spotify-header{
+    display:none;
+    align-items:center;
+    gap:6px;
+    margin:0 0 10px 0;
+    color:#F2F3F5;
+    font-size:14px;
+    font-weight:600;
+    width:100%;
+}
+.spotify-logo{
+    width:14px;
+    height:14px;
+    color:#B5BAC1;
+    margin-left:2px;
+}
+
+.player-aurora{position:absolute;inset:-35%;pointer-events:none;z-index:0;filter:blur(60px);opacity:.35;animation:auroraFloat 10s ease-in-out infinite alternate}.player-aurora::before,.player-aurora::after{content:"";position:absolute;width:220px;height:220px;border-radius:50%}.player-aurora::before{top:-30px;left:-40px;background:#1DB95455}.player-aurora::after{bottom:-40px;right:-30px;background:#6B5CFF55}@keyframes auroraFloat{from{transform:translate(-20px,-10px) scale(1)}to{transform:translate(20px,15px) scale(1.2)}}.spotify-header,.song,.progress-container,.spotify-time,.music-buttons{position:relative;z-index:2}
+
+:root{
+    --accent:#1DB954;
+}
+.progress-bar{
+    background:var(--accent);
+    box-shadow:0 0 15px var(--accent);
+}
+
+.spotify-header{
+    color:var(--accent);
+}
+
+.spotify-logo{
+    color:var(--accent);
+}
+
+.player-aurora::before{
+    background:color-mix(in srgb,var(--accent) 60%,transparent);
+}
+
+.song img{
+    box-shadow:0 0 25px var(--accent);
+}
+
+.music-buttons button:hover{
+    border-color:var(--accent);
+    box-shadow:0 0 18px var(--accent);
+}
+.glass{
+    position:relative;
+    overflow:hidden;
+    backdrop-filter: none;
+-webkit-backdrop-filter: none;
+}
+.glass::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    border-radius:inherit;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.12), transparent 35%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,.08), transparent 40%);
+    mix-blend-mode:screen;
+    opacity:.8;
+}
+
+.glass::after{
+    content:"";
+    position:absolute;
+    inset:-40%;
+    pointer-events:none;
+    background:linear-gradient(
+        120deg,
+        transparent 35%,
+        rgba(255,255,255,.08) 50%,
+        transparent 65%
+    );
+    animation:glassFlow 8s linear infinite;
+}
+
+@keyframes glassFlow{
+    from{
+        transform:translateX(-35%) rotate(8deg);
+    }
+    to{
+        transform:translateX(35%) rotate(8deg);
+    }
+}
+
+
+
+/* Compact working volume control */
+.mini-volume{
+    width:105px;
+    margin:7px auto 2px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    opacity:.75;
+}
+.mini-volume i{font-size:10px;}
+#volumeControl{
+    width:78px;
+    height:12px;
+    padding:0;
+    margin:0;
+    accent-color:var(--accent);
+    cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- VIDEO -->
+
+<video autoplay muted loop class="bg">
+
+<source src="background.mp4" type="video/mp4">
+
+</video>
+
+<div class="overlay"></div>
+<div class="aurora"></div>
+
+<!-- SNOW -->
+
+<div class="snow"></div>
+
+<!-- PROFILE -->
+
+<div class="profile">
+
+<!-- AVATAR -->
+
+<div class="avatar-wrapper">
+
+<img
+class="avatar"
+src="pfp.jpg"
+/>
+
+<img
+id="avatarDecoration"
+class="avatar-decoration"
+/>
+
+</div>
+
+<!-- USERNAME -->
+
+<h1 id="mainUsername">
+
+Loading...
+
+</h1>
+
+<!-- BIO -->
+
+<p class="bio">
+
+Heyy 🧸🩶
+
+</p>
+
+<!-- LOCATION -->
+
+<div class="location">
+
+<i class="fa-solid fa-location-dot"></i>
+
+India
+
+</div>
+
+<!-- DISCORD -->
+
+<div class="glass">
+
+<div class="discord">
+
+<div class="discord-avatar-wrap">
+
+<img
+id="discordAvatar"
+src="pfp.jpg"
+/>
+
+<div class="online-dot"></div>
+
+</div>
+
+<div class="discord-info">
+
+<div class="top-line">
+
+<h3 id="discordName">
+
+Loading...
+
+</h3>
+
+<a
+href="https://discord.gg/UW7VcVCvn9"
+target="_blank"
+class="guild-pill">
+
+<img
+src="ɓαɓყ.png"
+class="guild-heart"
+/>
+
+<span class="heart-name">ɓαɓყ</span>
+
+<img
+src="hyper.png"
+class="guild-heart"
+style="margin-left:10px;"
+/>
+
+<span class="heart-name"></span>
+
+</a>
+
+<div
+class="badges"
+id="discordBadges">
+
+</div>
+
+</div>
+
+<p id="discordStatus"><span class="status-icon"></span><span class="status-text">Loading...</span></p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MUSIC -->
+
+<div class="glass">
+    
+<div class="player-aurora"></div>
+<div class="spotify-header" id="spotifyHeader">
+    <span>Listening to Spotify</span>
+    <i class="fa-brands fa-spotify spotify-logo"></i>
+</div>
+<div class="song">
+
+<img
+id="songCover"
+src="cover1.jpg"
+/>
+
+<div class="song-info">
+
+<h4 id="songTitle">
+
+After Dark
+
+</h4>
+
+<p id="songArtist">
+
+Mr.Kitty
+
+</p>
+
+</div>
+
+</div>
+
+<audio id="audioPlayer"></audio>
+
+<div class="mini-volume">
+    <i class="fa-solid fa-volume-low" aria-hidden="true"></i>
+    <input id="volumeControl" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume">
+</div>
+
+<div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div class="spotify-time">
+    <span id="elapsed">0:00</span>
+    <span id="duration">0:00</span>
+</div>
+
+<div class="music-buttons">
+
+<button onclick="prevSong()" aria-label="Previous song">
+<i class="fa-solid fa-backward"></i>
+</button>
+
+<button id="playBtn" onclick="togglePlay()" aria-label="Play or pause">
+<i class="fa-solid fa-play"></i>
+</button>
+
+<button onclick="nextSong()" aria-label="Next song">
+<i class="fa-solid fa-forward"></i>
+</button>
+
+</div>
+
+
+
+</div>
+
+<!-- SOCIALS -->
+
+<div class="bottom-socials">
+
+<a href="https://discord.gg/UW7VcVCvn9" class="social">
+<i class="fa-brands fa-discord"></i>
+</a>
+
+<a href="#" class="social">
+<i class="fa-brands fa-instagram"></i>
+</a>
+
+<a href="#" class="social">
+<i class="fa-brands fa-spotify"></i>
+</a>
+
+<a href="#" class="social">
+<i class="fa-brands fa-github"></i>
+</a>
+
+<a href="#" class="social">
+<i class="fa-brands fa-x-twitter"></i>
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+/* SNOW */
+const container = document.querySelector(".snow");
+const symbols = ["❅",];
+
+function snowflake() {
+    const flake = document.createElement("span");
+
+    flake.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+    // Small snowflakes
+    const size = Math.random() * 8 + 8; // 4–8px
+
+    const startX = Math.random() * window.innerWidth;
+    const duration = Math.random() * 5000 + 9000;
+    const drift = (Math.random() - 0.5) * 90;
+
+    flake.style.cssText = `
+        position: fixed;
+        left: ${startX}px;
+        top: -20px;
+        font-size: ${size}px;
+        color: #000000;
+        opacity: 1;
+        text-shadow: 0 0 1px #000;
+        pointer-events: none;
+        user-select: none;
+        will-change: transform;
+        z-index: 9999;
+    `;
+
+    container.appendChild(flake);
+
+    const start = performance.now();
+
+    function animate(now) {
+        const t = Math.min((now - start) / duration, 1);
+
+        const y = t * (window.innerHeight + 40);
+        const x = startX + Math.sin(t * Math.PI * 6) * 10 + drift * t;
+        const rotate = t * 360;
+
+        flake.style.transform =
+            `translate3d(${x - startX}px, ${y}px, 0) rotate(${rotate}deg)`;
+
+        if (t < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            flake.remove();
+        }
+    }
+
+    requestAnimationFrame(animate);
+}
+
+setInterval(snowflake, 1000);
+
+
+/* ===========================
+   DISCORD / LANYARD
+=========================== */
+
+const userId = "1229664254118858842";
+
+let spotifyInterval = null;
+
+async function loadDiscord() {
+
+    try {
+   
+
+        const res = await fetch(
+            `https://api.lanyard.rest/v1/users/${userId}`
+        );
+
+        const json = await res.json();
+
+        if (!json.success) return;
+
+        const discord = json.data;
+
+        /* Username */
+
+        document.getElementById("discordName").textContent =
+            discord.discord_user.username;
+
+        document.getElementById("mainUsername").textContent =
+            discord.discord_user.global_name ||
+            discord.discord_user.username;
+
+        /* Avatar */
+
+        const avatar =
+            `https://cdn.discordapp.com/avatars/${discord.discord_user.id}/${discord.discord_user.avatar}.png?size=512`;
+
+        document.getElementById("discordAvatar").src = avatar;
+
+        document.querySelector(".avatar").src = avatar;
+
+        /* Avatar Decoration */
+
+        const decoration =
+            document.getElementById("avatarDecoration");
+
+        if (discord.discord_user.avatar_decoration_data) {
+
+            decoration.style.display = "block";
+
+            decoration.src =
+                `https://cdn.discordapp.com/avatar-decoration-presets/${discord.discord_user.avatar_decoration_data.asset}.png?size=240&passthrough=true`;
+
+        } else {
+
+            decoration.style.display = "none";
+
+        }
+
+        /* Status Icon */
+
+        const icon =
+            document.querySelector(".status-icon");
+
+        icon.className = "status-icon";
+        icon.style.background = "";
+
+        switch (discord.discord_status) {
+
+            case "online":
+                icon.style.background = "#23A55A";
+                break;
+
+            case "idle":
+                icon.style.background = "#F0B232";
+                break;
+
+            case "dnd":
+                icon.classList.add("dnd");
+                break;
+
+            default:
+                icon.style.background = "#80848E";
+
+        }
+
+        /* Profile Dot */
+
+        const dot =
+            document.querySelector(".online-dot");
+
+        switch (discord.discord_status) {
+
+            case "online":
+                dot.style.background = "#23A55A";
+                break;
+
+            case "idle":
+                dot.style.background = "#F0B232";
+                break;
+
+            case "dnd":
+                dot.style.background = "#F23F43";
+                break;
+
+            default:
+                dot.style.background = "#80848E";
+
+        }
+
+        /* Status Text */
+
+        const status =
+            document.querySelector(".status-text");
+
+        const custom =
+            discord.activities.find(a => a.type === 4);
+
+        const activity =
+            discord.activities.find(a => a.type !== 4);
+
+        if (discord.listening_to_spotify) {
+
+            
+
+        } else if (custom?.state) {
+
+            status.textContent =
+                `${custom.emoji?.name || ""} ${custom.state}`;
+
+        } else if (activity) {
+
+            status.textContent =
+                activity.details
+                    ? `${activity.name} • ${activity.details}`
+                    : activity.name;
+
+        } else {
+
+            switch (discord.discord_status) {
+
+                case "online":
+                    status.textContent = "Online";
+                    break;
+
+                case "idle":
+                    status.textContent = "Idle";
+                    break;
+
+                case "dnd":
+                    status.textContent = "Do Not Disturb";
+                    break;
+
+                default:
+                    status.textContent = "Offline";
+
+            }
+
+        }
+
+        /* Badges */
+
+        const badges =
+            document.getElementById("discordBadges");
+
+        badges.innerHTML = "";
+
+        function badge(url) {
+
+            const img =
+                document.createElement("img");
+
+            img.className = "badge";
+            img.src = url;
+
+            badges.appendChild(img);
+
+        }
+
+        /* Spotify flag for Part 2 */
+
+window.spotifyData =
+    discord.listening_to_spotify
+        ? discord.spotify
+        : null;
+
+if (window.spotifyData) {
+   console.log(window.spotifyData);
+   
+    enableSpotify();
+} else {
+    restoreLocalSong();
+}
+
+} catch (err) {
+
+    console.error(err);
+
+}        
+}
+loadDiscord();
+
+setInterval(loadDiscord, 5000);
+
+/* SONGS */
+
+const songs = [
+
+{
+    title: "Amsham",
+    artist: "Aksomaniac",
+    src: "Amsham ft. M.H.R, Bhumi, Circle Tone (Official Music Video) - Aksomaniac.mp3",
+    cover: "amsham.jpg"
+},
+
+{
+    title:"Hola",
+    artist:"MHR",
+    src:"MHR, EFY & EMZIII - Hola (Official Music Video) - MHR MUSIC.mp3",
+    cover:"Hola.jpg"
+},
+
+{
+    title:"Zill",
+    artist:"MHR",
+    src:"MHR, Shafi Kollam & JOKER390P - ZILL (Official Lyric Video) - MHR MUSIC.mp3",
+    cover:"Zil.jpg"
+},
+
+{
+    title:"Majboor Cinematic",
+    artist:"Zoha Waseem",
+    src:"Majboor Cinematic - Full Version  Zoha Waseem  Shreya Ghoshal  DJ Sumit Rajwanshi - DJ Sumit Rajwanshi.mp3",
+    cover:"Majboor Cinematic.jpg"
+},
+
+{
+    title:"Banjar",
+    artist:"Krtin kay",
+    src:"Banjar.mp3",
+    cover:"Banjar.jpg"
+},
+
+{
+    title:"Reha",
+    artist:"Vanshh",
+    src:"Reha - Vanshh (Official Lyric Visualizer) - Vanshh.mp3",
+    cover:"Reha.jpg"
+},
+
+{
+    title:"ჩუბინა",
+    artist:"East Duo",
+    src:"ჩუბინა.mp3",
+    cover:"ჩუბინა.jpg"
+},
+];
+
+let currentSong = 0;
+
+const audio =
+document.getElementById(
+"audioPlayer"
+);
+
+const volumeControl = document.getElementById("volumeControl");
+audio.volume = 1;
+
+volumeControl.addEventListener("input", () => {
+    audio.volume = Number(volumeControl.value);
+});
+
+
+const songTitle =
+document.getElementById(
+"songTitle"
+);
+
+const songArtist =
+document.getElementById(
+"songArtist"
+);
+
+const songCover =
+document.getElementById(
+"songCover"
+);
+
+const playBtn =
+document.getElementById(
+"playBtn"
+);
+
+const progressBar =
+document.getElementById(
+"progressBar"
+);
+
+/* LOAD SONG */
+
+function loadSong(index){
+
+    currentSong = index;
+
+    audio.src = songs[index].src;
+
+    songTitle.textContent = songs[index].title;
+
+    songArtist.textContent = songs[index].artist;
+
+    songCover.src = songs[index].cover;
+
+    audio.load();
+
+    progressBar.style.width = "0%";
+
+}
+/* ===========================
+   SPOTIFY PLAYER
+=========================== */
+
+const localMusic = {
+    title: "",
+    artist: "",
+    cover: ""
+};
+
+function rememberLocalSong() {
+
+    localMusic.title = songTitle.innerText;
+    localMusic.artist = songArtist.innerText;
+    localMusic.cover = songCover.src;
+
+
+}
+rememberLocalSong();
+function restoreLocalSong(){
+document.documentElement.style.setProperty(
+    "--accent",
+    "#1DB954"
+);
+    clearInterval(spotifyInterval);
+
+    loadSong(currentSong);
+
+    document.getElementById("elapsed").textContent = "0:00";
+
+    document.getElementById("duration").textContent = "0:00";
+
+}
+async function updateTheme(imageUrl){
+
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = imageUrl;
+
+    img.onload = () => {
+
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = 50;
+        canvas.height = 50;
+
+        ctx.drawImage(img,0,0,50,50);
+
+        const pixels = ctx.getImageData(0,0,50,50).data;
+
+        let r=0,g=0,b=0,count=0;
+
+        for(let i=0;i<pixels.length;i+=4){
+            r+=pixels[i];
+            g+=pixels[i+1];
+            b+=pixels[i+2];
+            count++;
+        }
+
+        r=Math.round(r/count);
+        g=Math.round(g/count);
+        b=Math.round(b/count);
+
+        document.documentElement.style.setProperty(
+            "--accent",
+            `rgb(${r},${g},${b})`
+        );
+
+    };
+
+}
+
+function enableSpotify(){
+
+    if(!window.spotifyData){
+        restoreLocalSong();
+        return;
+    }
+
+    clearInterval(spotifyInterval);
+
+    songTitle.textContent = window.spotifyData.song;
+
+    songArtist.textContent = window.spotifyData.artist;
+
+    songCover.src =
+    window.spotifyData.album_art_url ||
+    `https://i.scdn.co/image/${window.spotifyData.album_art}`;
+    updateTheme(songCover.src);
+    const start = window.spotifyData.timestamps.start;
+    const end = window.spotifyData.timestamps.end;
+
+    function format(ms){
+        const sec = Math.floor(ms / 1000);
+        const min = Math.floor(sec / 60);
+        return `${min}:${String(sec % 60).padStart(2,"0")}`;
+    }
+
+    function update(){
+
+        const now = Date.now();
+
+        const elapsed = Math.max(0, now - start);
+        const total = end - start;
+
+        const percent = Math.min((elapsed / total) * 100, 100);
+
+        progressBar.style.width = percent + "%";
+
+        document.getElementById("elapsed").textContent =
+            format(elapsed);
+
+        document.getElementById("duration").textContent =
+            format(total);
+    }
+
+    update();
+
+    spotifyInterval = setInterval(update, 1000);
+
+}
+/* PLAY */
+
+async function togglePlay(){
+
+try{
+
+if(audio.paused){
+
+await audio.play();
+
+playBtn.innerHTML =
+'<i class="fa-solid fa-pause"></i>';
+
+}else{
+
+audio.pause();
+
+playBtn.innerHTML =
+'<i class="fa-solid fa-play"></i>';
+
+}
+
+}catch(err){
+
+console.log(err);
+
+}
+
+}
+
+/* NEXT */
+
+async function nextSong(){
+
+currentSong++;
+
+if(currentSong >= songs.length){
+
+currentSong = 0;
+
+}
+
+loadSong(currentSong);
+
+await audio.play();
+
+playBtn.innerHTML =
+'<i class="fa-solid fa-pause"></i>';
+
+}
+
+/* PREV */
+
+async function prevSong(){
+
+currentSong--;
+
+if(currentSong < 0){
+
+currentSong =
+songs.length - 1;
+
+}
+
+loadSong(currentSong);
+
+await audio.play();
+
+playBtn.innerHTML =
+'<i class="fa-solid fa-pause"></i>';
+
+}
+
+/* AUTO NEXT */
+
+audio.addEventListener(
+"ended",
+nextSong
+);
+
+/* PROGRESS */
+
+audio.addEventListener(
+"timeupdate",
+()=>{
+
+if(audio.duration){
+
+const progress =
+(audio.currentTime /
+audio.duration) * 100;
+
+progressBar.style.width =
+progress + "%";
+
+}
+
+});
+
+
+/* START */
+
+loadSong(currentSong);
+
+/* Cursor Glow */
+
+const glow = document.getElementById("cursorGlow");
+
+document.addEventListener("mousemove", (e) => {
+    glow.style.left = e.clientX + "px";
+    glow.style.top = e.clientY + "px";
+});
+document.querySelectorAll(".glass").forEach(card=>{
+
+    card.addEventListener("mousemove",e=>{
+
+        const rect=card.getBoundingClientRect();
+
+        const x=((e.clientX-rect.left)/rect.width-.5)*8;
+        const y=((e.clientY-rect.top)/rect.height-.5)*8;
+
+        card.style.transform=
+            `perspective(900px)
+             rotateX(${-y}deg)
+             rotateY(${x}deg)
+             translateY(-2px)`;
+
+    });
+
+    card.addEventListener("mouseleave",()=>{
+
+        card.style.transform=
+            "perspective(900px) rotateX(0) rotateY(0)";
+
+    });
+
+});
+
+</script>
+
+
+</body>
+</html>
